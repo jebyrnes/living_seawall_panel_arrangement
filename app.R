@@ -18,7 +18,7 @@ make_img_names <- function(img = img){
     gsub("([a-z])([A-Z])", "\\1 \\2", x=_)
 }
 
-img_html <- paste0(make_img_names(img), "<br> <img src=",img," width=50 height=50>")|>
+img_html <- paste0(make_img_names(img), "<br> <img src=",img," width=40 height=40>")|>
   lapply(HTML)
 
 ui <- fluidPage(
@@ -26,7 +26,6 @@ ui <- fluidPage(
   
   titlePanel("Make a Living Seawall", 
              windowTitle = "Make a Living Seawall"),
-  HTML("<a href=https://stonelivinglab.org/>Stone Living Lab</a> together with <a href=https://www.livingseawalls.com.au/>Living Seawalls</a>"),
   
   #HTML(img_html),
   
@@ -37,7 +36,7 @@ ui <- fluidPage(
       
       br(),
       checkboxGroupInput("panels", 
-                         HTML("Choose Panels to Use <br>(must be at least 4)"),
+                         HTML("Choose Panels to Use <br>(must use at least 4)"),
                          selected = 1:length(img),
                          choiceNames = img_html,
                          choiceValues = 1:length(img)),
@@ -55,6 +54,13 @@ ui <- fluidPage(
     mainPanel(
       plotOutput("wall")
     )
+  ),
+  
+  fluidRow(
+    br(),br(),
+    #img(src='nasa-logo-web-rgb_small.jpg', align = "left", height = 50),
+    img(src='umb_logo.png', align = "left", height = 50),
+    HTML("&nbsp; &nbsp; App from the <a href=https://stonelivinglab.org/>Stone Living Lab</a> in collaboration with <a href=https://www.livingseawalls.com.au/>Living Seawalls</a>")
   )
 )
 
