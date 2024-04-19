@@ -18,8 +18,8 @@ make_img_names <- function(img = img){
     gsub("([a-z])([A-Z])", "\\1 \\2", x=_)
 }
 
-img_html <- paste0(make_img_names(img), "<br> <img src=",img," width=40 height=40>")|>
-  lapply(HTML)
+img_html <- paste0(make_img_names(img), "<br> <img src=",img," width=40 height=40>")
+img_html <- lapply(HTML, img_html)
 
 ui <- fluidPage(
   theme = shinytheme("united"),
