@@ -20,7 +20,7 @@ make_img_names <- function(img = img){
 }
 
 img_html <- paste0(make_img_names(img), "<br> <img src=",img," width=40 height=40>")
-img_html <- lapply(HTML, img_html)
+img_html <- lapply(img_html, HTML)
 
 ui <- fluidPage(
   theme = shinytheme("united"),
