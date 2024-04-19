@@ -14,8 +14,9 @@ img <- list.files("images",
                   pattern="png", full.names=TRUE)
 
 make_img_names <- function(img = img){
-  gsub("images\\/(.*)\\.png$", "\\1", img) |>
-    gsub("([a-z])([A-Z])", "\\1 \\2", x=_)
+  out <- gsub("images\\/(.*)\\.png$", "\\1", img)
+
+  gsub("([a-z])([A-Z])", "\\1 \\2", x=out)
 }
 
 img_html <- paste0(make_img_names(img), "<br> <img src=",img," width=40 height=40>")
