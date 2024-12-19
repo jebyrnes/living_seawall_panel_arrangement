@@ -13,6 +13,9 @@ source("hex_grid_funs.R")
 img <- list.files("images",
                   pattern="png", full.names=TRUE)
 
+# to match with the boston design
+img <- c(img[c(1,2,5,7,9)], img[-c(1,2,5,7,9)])
+
 make_img_names <- function(img = img){
   out <- gsub("images\\/(.*)\\.png$", "\\1", img)
 
@@ -21,6 +24,7 @@ make_img_names <- function(img = img){
 
 img_html <- paste0(make_img_names(img), "<br> <img src=",img," width=40 height=40>")
 img_html <- lapply(img_html, HTML)
+
 
 ui <- fluidPage(
   theme = shinytheme("united"),
@@ -38,11 +42,11 @@ ui <- fluidPage(
       br(),
       checkboxGroupInput("panels", 
                          HTML("Choose Panels to Use <br>(must use at least 4)"),
-                         selected = 1:length(img),
+                         selected = 1:5,#1:length(img),
                          choiceNames = img_html,
                          choiceValues = 1:length(img)),
       
-      br(),
+     # br(),
       hr(),
       
       checkboxInput("has_seed", "Enter wall design number"),
@@ -58,9 +62,9 @@ ui <- fluidPage(
   ),
   
   fluidRow(
-    br(),br(),
+   # br(),br(),
     #img(src='nasa-logo-web-rgb_small.jpg', align = "left", height = 50),
-    img(src='umb_logo.png', align = "left", height = 50),
+    img(src='umb_logo.png', style="padding:5px", align = "left", height = 50),
     HTML("&nbsp; &nbsp; App from the <a href=https://stonelivinglab.org/>Stone Living Lab</a> in collaboration with <a href=https://www.livingseawalls.com.au/>Living Seawalls</a>"),
     img(src='lsw_logo.jpg', align = "left", height = 50)
   )
